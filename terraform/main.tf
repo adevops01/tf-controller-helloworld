@@ -11,3 +11,22 @@ variable "subject" {
 output "hello_world" {
   value = "hey hey ya, ${var.subject}!"
 }
+
+
+variable "subject" {
+   type = string
+   default = "World"
+   description = "Subject to hello"
+}
+
+resource "random_id" "id" {
+  keepers = {
+    trigger = var.subject
+  }
+
+  byte_length = 4
+}
+
+output "hello_world" {
+  value = "Hello World, ${var.subject} ${random_id.id.hex}!"
+}
