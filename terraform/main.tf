@@ -13,7 +13,7 @@ output "hello_world" {
 }
 
 
-variable "subject" {
+variable "subject01" {
    type = string
    default = "World"
    description = "Subject to hello"
@@ -21,12 +21,12 @@ variable "subject" {
 
 resource "random_id" "id" {
   keepers = {
-    trigger = var.subject
+    trigger = var.subject01
   }
 
   byte_length = 4
 }
 
 output "new_world" {
-  value = "Hello World, ${var.subject} ${random_id.id.hex}!"
+  value = "Hello World, ${var.subject01} ${random_id.id.hex}!"
 }
